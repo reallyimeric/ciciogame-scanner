@@ -66,11 +66,13 @@ function* scanGenerator() {
       xhr.addEventListener('load', resultParser)
       xhr.open('POST', targetUrl)
       xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded')
+      xhr.overrideMimeType('text/html; charset=gbk')
       xhr.send(param)
       function resultParser(evt) {
         evt
         const parser = new DOMParser()
         const resultDocument = parser.parseFromString(xhr.responseText, 'text/html')
+        // alert(resultDocument.characterSet)
         console.log(resultDocument.getElementById('galaxy_form').galaxycode.value)
         targetDocument = resultDocument
         const possiableNodeList = resultDocument.getElementsByTagName('tbody')[1].querySelectorAll('tr>th>a[href="#"]')
@@ -79,7 +81,7 @@ function* scanGenerator() {
             const planet = el.parentNode.parentNode.getElementsByTagName('th')[0].querySelector('a').text
             const playerNameAnchor = el.parentNode.parentNode.getElementsByTagName('th')[5].querySelector('a')
             const player = playerNameAnchor ? playerNameAnchor.text : ''
-            //alert(`${el.text} ${player}`)
+            // alert(`${el.text} ${player}`)
             const position = `${galaxy}:${system}:${planet}`
             dataStorage.set(position, player)
           } else {
