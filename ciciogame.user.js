@@ -111,8 +111,8 @@ function DataStorage() {
   this.set = (position, player) => localStorage.setItem(position, player)
   this.getAll = () => {
     let result = []
-    for (let i = 0; i != 10; i++)
-      for (let j = 0; j != 500; j++)
+    for (let i = 1; i != 10; i++)
+      for (let j = 1; j != 500; j++)
         for (let k = 1; k != 16; k++){
           const position = `${i}:${j}:${k}`
           const player = this.get(position)
