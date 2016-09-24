@@ -45,7 +45,7 @@ function init() {
 function* scanGenerator() {
   let galaxy = localStorage.getItem('scannerGalaxy')
   let system = localStorage.getItem('scannerSystem')
-  // if (localStorage.getItem('scannerStatus') == RUNNING) return
+  if (localStorage.getItem('scannerStatus') == RUNNING) return
   localStorage.setItem('scannerStatus', RUNNING)
   let targetDocument = document
   let galaxycode
